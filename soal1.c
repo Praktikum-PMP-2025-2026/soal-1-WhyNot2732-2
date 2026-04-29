@@ -25,8 +25,8 @@ void bubblesort(data arr[], int N);
 
 int main(){
     int N;
-    char input[200];
-    fgets(input, 200, stdin);
+    char input[1000];
+    fgets(input, 1000, stdin);
     char* tok;
     tok = strtok(input, " ");
     N = atoi(tok);
