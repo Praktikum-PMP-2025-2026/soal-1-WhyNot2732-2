@@ -108,3 +108,15 @@ void bubblesortKategori(data arr[], int N){
         }
     }
 }
+
+/*
+REFERENSI:
+https://www.geeksforgeeks.org/dsa/c-program-sort-array-names-strings/
+https://www.geeksforgeeks.org/c/qsort-function-in-c/
+https://www.geeksforgeeks.org/c/strcmp-in-c/
+https://www.geeksforgeeks.org/dsa/sort-string-characters/
+https://www.geeksforgeeks.org/c/fgets-function-in-c/
+https://www.geeksforgeeks.org/c/comparator-function-of-qsort-in-c/
+https://github.com/4GeeksAcademy/cybersecurity-syllabus/blob/main/07-pentesting-red-team/buffer-overflow.md
+https://www.geeksforgeeks.org/cpp/strtok-strtok_r-functions-c-examples/
+*/
