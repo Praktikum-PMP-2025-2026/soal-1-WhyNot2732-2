@@ -25,9 +25,8 @@ int main()
 {
     int N;
     char input[200];
-    char* tok;
-    getchar();
     fgets(input, 200, stdin);
+    char* tok;
     tok = strtok(input, " ");
     N = atoi(tok);
     data arr[N];
