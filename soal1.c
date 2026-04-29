@@ -26,6 +26,9 @@ void bubblesort(data arr[], int N);
 int main(){
     int N;
     char input[1000];
+
+    // scanf("%d", &N);
+
     fgets(input, 1000, stdin);
     char* tok;
     tok = strtok(input, " ");
@@ -35,11 +38,11 @@ int main(){
     for (int i = 0; i < N; i++)
     {
         tok = strtok(NULL, " ");
-        arr[i].nama = (char*)malloc(strlen(tok) * sizeof(char));
+        arr[i].nama = (char*)malloc((strlen(tok)+1) * sizeof(char));
         strcpy(arr[i].nama, tok);
 
         tok = strtok(NULL, " ");
-        arr[i].kategori = (char*)malloc(strlen(tok) * sizeof(char));
+        arr[i].kategori = (char*)malloc((strlen(tok)+1) * sizeof(char));
         strcpy(arr[i].kategori, tok);
 
         tok = strtok(NULL, " ");
@@ -71,29 +74,22 @@ int compareTahun(const void *a, const void *b){
 
 void bubblesort(data arr[], int N){
     int status;
-    char *temp;
-    for (int i = 0; i < N-1; i++)
-    {
+    data temp;
+    for (int i = 0; i < N-1; i++){
         status = 0;
         for (int j = 0; j < N-i-1; j++)
         {
             if (strcmp(arr[j].kategori, arr[j+1].kategori) > 0)
             {
-                temp = (char *)malloc(strlen(arr[j+1].kategori)*sizeof(char));
-                strcpy(temp, arr[j+1].kategori);
-                arr[j+1].kategori = realloc(arr[j+1].kategori, strlen(arr[j].kategori)*sizeof(char));
-                strcpy(arr[j+1].kategori, arr[j].kategori);
-                arr[j].kategori = realloc(arr[j].kategori, strlen(temp)*sizeof(char));
-                strcpy(arr[j].kategori, temp);
+                temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
                 status = 1;
             }
-            
         }
         if (status ==0)
         {
             break;
         }
-        
     }
-    
 }
