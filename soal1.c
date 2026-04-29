@@ -19,16 +19,11 @@ typedef struct data
     int nilai;
 } data;
 
-int compareKategori(const void *a, const void *b);
-int compareTahun(const void *a, const void *b);
-void bubblesort(data arr[], int N);
+void bubblesortKategori(data arr[], int N);
 
 int main(){
     int N;
     char input[1000];
-
-    // scanf("%d", &N);
-
     fgets(input, 1000, stdin);
     char* tok;
     tok = strtok(input, " ");
@@ -52,8 +47,7 @@ int main(){
         arr[i].nilai = atoi(tok);
     }
 
-    qsort(arr, N, sizeof(data), compareTahun);
-    bubblesort(arr, N);
+    bubblesortKategori(arr, N);
     //qsort(arr, N, sizeof(data), compareKategori);
     
     for (int i = 0; i < N; i++)
@@ -64,15 +58,8 @@ int main(){
     return 0;
 }
 
-int compareKategori(const void *a, const void *b){
-    return strcmp(((data *)a)->kategori, ((data *)b)->kategori);
-}
 
-int compareTahun(const void *a, const void *b){
-    return ((data *)a)->tahun - ((data *)b)->tahun;
-}
-
-void bubblesort(data arr[], int N){
+void bubblesortKategori(data arr[], int N){
     int status;
     data temp;
     for (int i = 0; i < N-1; i++){
@@ -85,6 +72,34 @@ void bubblesort(data arr[], int N){
                 arr[j+1] = arr[j];
                 arr[j] = temp;
                 status = 1;
+            } else if (strcmp(arr[j].kategori, arr[j+1].kategori) == 0)
+            {
+                if ((arr[j].tahun - arr[j+1].tahun) == 0)
+                {
+                    if ((arr[j+1].nilai - arr[j].nilai) == 0)
+                    {
+                        if ((strcmp(arr[j].nama, arr[j+1].nama)) > 0)
+                        {
+                            temp = arr[j+1];
+                            arr[j+1] = arr[j];
+                            arr[j] = temp;
+                            status = 1;
+                        }
+                        
+                    }else if ((arr[j+1].nilai - arr[j].nilai) > 0)
+                    {
+                        temp = arr[j+1];
+                        arr[j+1] = arr[j];
+                        arr[j] = temp;
+                        status = 1;
+                    }
+                } else if ((arr[j].tahun - arr[j+1].tahun) > 0)
+                {
+                    temp = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                    status = 1;
+                }
             }
         }
         if (status ==0)
