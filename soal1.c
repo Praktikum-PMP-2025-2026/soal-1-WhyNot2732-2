@@ -19,13 +19,15 @@ typedef struct data
     int nilai;
 } data;
 
-int compare(const void *a, const void *b);
+int compareKategori(const void *a, const void *b);
+int compareTahun(const void *a, const void *b);
 
 int main()
 {
     int N;
-    char input[200];
-    fgets(input, 200, stdin);
+    char *input;
+    input = (char *)malloc(100 * sizeof(char));
+    fgets(input, 100, stdin);
     char* tok;
     tok = strtok(input, " ");
     N = atoi(tok);
@@ -48,8 +50,8 @@ int main()
         arr[i].nilai = atoi(tok);
     }
 
-
-    qsort(arr, N, sizeof(data), compare);
+    qsort(arr, N, sizeof(data), compareTahun);
+    qsort(arr, N, sizeof(data), compareKategori);
     
     for (int i = 0; i < N; i++)
     {
@@ -59,7 +61,10 @@ int main()
     return 0;
 }
 
-int compare(const void *a, const void *b){
+int compareKategori(const void *a, const void *b){
     return strcmp(((data *)a)->kategori, ((data *)b)->kategori);
 }
 
+int compareTahun(const void *a, const void *b){
+    return ((data *)a)->tahun - ((data *)b)->tahun;
+}
