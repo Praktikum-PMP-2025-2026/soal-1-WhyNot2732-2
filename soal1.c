@@ -21,13 +21,12 @@ typedef struct data
 
 int compareKategori(const void *a, const void *b);
 int compareTahun(const void *a, const void *b);
+void bubblesort(data arr[], int N);
 
-int main()
-{
+int main(){
     int N;
-    char *input;
-    input = (char *)malloc(100 * sizeof(char));
-    fgets(input, 100, stdin);
+    char input[200];
+    fgets(input, 200, stdin);
     char* tok;
     tok = strtok(input, " ");
     N = atoi(tok);
@@ -51,7 +50,8 @@ int main()
     }
 
     qsort(arr, N, sizeof(data), compareTahun);
-    qsort(arr, N, sizeof(data), compareKategori);
+    bubblesort(arr, N);
+    //qsort(arr, N, sizeof(data), compareKategori);
     
     for (int i = 0; i < N; i++)
     {
@@ -67,4 +67,33 @@ int compareKategori(const void *a, const void *b){
 
 int compareTahun(const void *a, const void *b){
     return ((data *)a)->tahun - ((data *)b)->tahun;
+}
+
+void bubblesort(data arr[], int N){
+    int status;
+    char *temp;
+    for (int i = 0; i < N-1; i++)
+    {
+        status = 0;
+        for (int j = 0; j < N-i-1; j++)
+        {
+            if (strcmp(arr[j].kategori, arr[j+1].kategori) > 0)
+            {
+                temp = (char *)malloc(strlen(arr[j+1].kategori)*sizeof(char));
+                strcpy(temp, arr[j+1].kategori);
+                arr[j+1].kategori = realloc(arr[j+1].kategori, strlen(arr[j].kategori)*sizeof(char));
+                strcpy(arr[j+1].kategori, arr[j].kategori);
+                arr[j].kategori = realloc(arr[j].kategori, strlen(temp)*sizeof(char));
+                strcpy(arr[j].kategori, temp);
+                status = 1;
+            }
+            
+        }
+        if (status ==0)
+        {
+            break;
+        }
+        
+    }
+    
 }
