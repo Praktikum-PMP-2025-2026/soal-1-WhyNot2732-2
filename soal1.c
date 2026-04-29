@@ -24,9 +24,9 @@ int compare(const void *a, const void *b);
 int main()
 {
     int N;
-    char input[100];
+    char input[1000];
     char* tok;
-    fgets(input, 100, stdin);
+    fgets(input, 1000, stdin);
     tok = strtok(input, " ");
     N = atoi(tok);
     data arr[N];
